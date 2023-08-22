@@ -1,8 +1,14 @@
 HELP.md
-target/
+# Ignorar tudo na pasta target, exceto arquivos .jar
+/target/*
+!/target/*.jar
+
+# Ignorar outros padrões
+.target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
 
 ### STS ###
 .apt_generated
