@@ -18,8 +18,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.3'
-          memory: '960MB'
+          cpus: '0.25'
+          memory: '1.25GB'
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://api1:8080/actuator/health || exit 1" ]
       interval: 10s
@@ -45,8 +45,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.3'
-          memory: '960MB'
+          cpus: '0.25'
+          memory: '1.25GB'
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://api2:8080/actuator/health || exit 1" ]
       interval: 10s
@@ -68,8 +68,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.15'
-          memory: '128MB'
+          cpus: '0.25'
+          memory: '0.25GB'
 
 
   db: # Banco de dados
@@ -89,7 +89,7 @@ services:
       resources:
         limits:
           cpus: '0.75'
-          memory: '1GB'
+          memory: '0.5GB'
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 10s
