@@ -20,6 +20,11 @@ services:
         limits:
           cpus: '0.3'
           memory: '960MB'
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://api1:8080/actuator/health || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 
   api2: # API - Instância 02
@@ -42,6 +47,11 @@ services:
         limits:
           cpus: '0.3'
           memory: '960MB'
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://api2:8080/actuator/health || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   nginx: # Load Balancer
     image: nginx:latest
@@ -66,9 +76,9 @@ services:
     image: postgres
     container_name: db
     environment:
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
-        POSTGRES_DB: pessoas
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pessoas
     ports:
       - "5433:5432"
     volumes:
@@ -80,9 +90,15 @@ services:
         limits:
           cpus: '0.75'
           memory: '1GB'
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres-data:
 networks:
   rinhabackend-network:
     driver: bridge
+
