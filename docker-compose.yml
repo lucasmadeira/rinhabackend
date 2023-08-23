@@ -23,8 +23,9 @@ services:
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://api1:8080/actuator/health || exit 1" ]
       interval: 10s
+      retries: 60
+      start_period: 20s
       timeout: 5s
-      retries: 5
 
 
   api2: # API - Instância 02
@@ -50,8 +51,9 @@ services:
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://api2:8080/actuator/health || exit 1" ]
       interval: 10s
+      retries: 60
+      start_period: 20s
       timeout: 5s
-      retries: 5
 
   nginx: # Load Balancer
     image: nginx:latest
