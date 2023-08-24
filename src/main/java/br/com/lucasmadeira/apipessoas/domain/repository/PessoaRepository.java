@@ -9,6 +9,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface PessoaRepository  extends JpaRepository<Pessoa, UUID> {
-    @Query(value = "select * from pessoa p where p.facet like %:termo%", nativeQuery = true)
+    @Query(value = "select * from pessoa p where p.facet like %:termo% limit 50", nativeQuery = true)
     List<Pessoa> pesquisarPorTermo(@Param("termo") String termo);
 }
