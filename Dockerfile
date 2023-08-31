@@ -13,5 +13,8 @@ RUN apt-get update && apt-get install -y curl
 # Expose the port that the application will listen on
 EXPOSE 8080
 
+# JVM Options: Adjust as needed based on your application's requirements
+ENV JAVA_OPTS="-Xms512m -Xmx1024m -XX:MaxMetaspaceSize=256m -XX:+UseG1GC -XX:ParallelGCThreads=2"
+
 # Run the application
 CMD ["java", "-jar", "api-pessoas-0.0.1-SNAPSHOT.jar"]

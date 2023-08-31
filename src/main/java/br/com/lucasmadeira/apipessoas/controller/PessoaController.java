@@ -33,14 +33,14 @@ public class PessoaController {
         OutputCadastrarPessoaDTO response = cadastrarPessoaUseCase.execute(request);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(URI.create("/pessoas/" + response.getId()));
+        headers.setLocation(URI.create("/pessoas/" + response.getId().toString()));
 
         return new ResponseEntity<>(response,headers, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pessoa> detalhePessoa(@PathVariable UUID id){
-            Pessoa pessoa = pessoaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public ResponseEntity<Pessoa> detalhePessoa(@PathVariable String id){
+            Pessoa pessoa = pessoaRepository.findById(UUID.fromString(id)).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
             return ResponseEntity.ok(pessoa);
     }

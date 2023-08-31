@@ -20,7 +20,7 @@ public class CadastrarPessoaUseCase {
     @Transactional
     public OutputCadastrarPessoaDTO execute(InputCadastrarPessoaDTO input){
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate dataNascimento = LocalDate.parse(input.getNascimento(), formatter);
 
         Pessoa pessoa = new Pessoa(input.getApelido(), input.getNome(), dataNascimento, input.getStack());
