@@ -6,8 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Data
@@ -32,10 +31,12 @@ public class Pessoa {
     private List<String> stack;
 
     @JsonIgnore
+    @Column(columnDefinition = "TEXT")
     private String facet;
 
 
     public Pessoa(String apelido, String nome, LocalDate nascimento, List<String> stack) {
+        this.id = UUID.randomUUID();
         this.apelido = apelido;
         this.nome =  nome;
         this.nascimento = nascimento;
@@ -50,5 +51,16 @@ public class Pessoa {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pessoa pessoa = (Pessoa) o;
+        return Objects.equals(getApelido(), pessoa.getApelido());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getApelido());
+    }
 }

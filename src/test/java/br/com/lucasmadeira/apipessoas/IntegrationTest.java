@@ -40,11 +40,11 @@ public class IntegrationTest {
                 headers.setContentType(MediaType.APPLICATION_JSON);
 
 
-                ResponseEntity<OutputCadastrarPessoaDTO> response = restTemplate.exchange(
+                ResponseEntity<String> response = restTemplate.exchange(
                         "/pessoas",
                         HttpMethod.POST,
                         new HttpEntity<>(payload, headers),
-                        OutputCadastrarPessoaDTO.class
+                        String.class
                 );
 
                 if(mapStatusCode.containsKey(response.getStatusCode().toString())){

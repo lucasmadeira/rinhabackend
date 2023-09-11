@@ -22,5 +22,6 @@ public class InputCadastrarPessoaDTO {
     @DateFormat
     private String nascimento;
 
+
     private List<String> stack;
 }
