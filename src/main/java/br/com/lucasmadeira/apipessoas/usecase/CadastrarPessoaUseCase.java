@@ -50,7 +50,7 @@ public class CadastrarPessoaUseCase {
 
     }
 
-    @Scheduled(fixedRate = 10000) // Agendado para ser executado a cada 10 segundos
+    @Scheduled(fixedRate = 10000) // Agendado para ser executado a cada 46 segundos
     @Transactional
     public void processarPessoasEmLotes() {
         synchronized (pessoas) {
@@ -58,6 +58,7 @@ public class CadastrarPessoaUseCase {
                 return;
             }
             List<Pessoa> lote = pessoas.stream().limit(1000).collect(Collectors.toList());
+            //List<Pessoa> lote = pessoas.stream().limit(10000).collect(Collectors.toList());
             repository.saveAll(lote);
             pessoas.removeAll(lote);
             repository.flush();

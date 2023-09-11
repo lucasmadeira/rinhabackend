@@ -99,7 +99,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.50'
+          cpus: '0.45'
           memory: '0.8GB'
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres pessoas" ]
@@ -118,7 +118,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.10'
+          cpus: '0.15'
           memory: '0.3GB'
 
 volumes:
